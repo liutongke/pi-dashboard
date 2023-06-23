@@ -29,7 +29,8 @@ $D['os'] = explode(" ", php_uname());
 
 if (($str = @file("/proc/cpuinfo")) !== false){
     $str = implode("", $str);
-    @preg_match_all("/model\s+name\s{0,}\:+\s{0,}([\w\s\)\(\@.-]+)([\r\n]+)/s", $str, $model);
+//    @preg_match_all("/model\s+name\s{0,}\:+\s{0,}([\w\s\)\(\@.-]+)([\r\n]+)/s", $str, $model);
+    preg_match_all('/Model\s+:\s+(.+)/', $str, $model);
     @preg_match_all("/BogoMIPS\s{0,}\:+\s{0,}([\d\.]+)[\r\n]+/", $str, $bogomips);
     @preg_match_all("/Model\s{0,}\:+\s{0,}([\w\s\)\(\@.-]+)([\r\n]+)/s", $str, $pimodel);
 
