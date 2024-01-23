@@ -54,9 +54,9 @@ print(f"本机的 IP 地址是：{ip}")
 subprocess.run([
     'docker',
     'run',
-    '--name', 'php1',
+    '--name', 'pi-dashboard-php-v1',
     "-e", f"MY_IP={ip}",
-    '--network', 'pi-dashboard-php-v1',
+    '--network', 'pi-dashboard-net',
     '--network-alias', 'pi-dashboard-php',
     "--restart=always",
     '-p' '9000:9000',
@@ -79,7 +79,7 @@ subprocess.run(
         '--network-alias', 'pi-dashboard-nginx',
         '--restart', 'always',
         '-p', '80:80',
-        '-v', f'{current_directory}:/usr/share/nginx/html',
+        '-v', f'{current_directory}:/var/www/html/',
         '-d',
         'pi-dashboard-nginx:v1'
     ])
